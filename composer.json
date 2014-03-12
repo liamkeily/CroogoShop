@@ -1,0 +1,17 @@
+{
+"name": "liamkeily/croogo-shop",
+"type": "cakephp-plugin",
+"description": "Shop for Croogo",
+"homepage": "http://github.com/liamkeily/CroogoShop",
+"license": "MIT",
+"authors": [
+{
+"name": "Liam Keily",
+"email": "liam@simplywebsites.com",
+"homepage": "http://www.liamkeily.com"
+}
+],
+"require": {
+"php": ">=5.3.0"
+}
+}
