@@ -13,6 +13,10 @@ The current plan is have product as a new Node Content Type, this will allow us 
 
 CroogoPayments will be a seperate plugin that CroogoShop will use for processing order payments. CroogoPayments should also be usable elsewhere in croogo and by other plugins. 
 
+## Compatability
+
+This plugin is being developed for 2.0 (may be compatible with previous versions)
+
 ## Progress
 
 This plugin is currently not ready for use.
