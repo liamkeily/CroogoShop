@@ -23,6 +23,8 @@ This plugin is currently not ready for use.
 
 ## Installation
 
-From console run ./Console/cake schema create --plugin CroogoShop
+From console run:
+
+> ./Console/cake schema create --plugin CroogoShop
 
 Clone into Plugin directory and enable through Extensions > Plugin
