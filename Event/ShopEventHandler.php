@@ -23,6 +23,36 @@ class ShopEventHandler implements CakeEventListener {
 		'children'=>array(
 			'shop.products' => array(
 				'title'=>'Products',
+				'url'=>array(
+				'plugin'=>'nodes',
+				'controller'=>'nodes',
+				'action'=>'index',
+				'?'=>array(
+					'type'=>'product'
+				),
+				),
+				'children'=>array(
+					'shop.products.index'=>array(
+						'title'=>'List',
+						'url'=>array(
+						'plugin'=>'nodes',
+						'controller'=>'nodes',
+						'action'=>'index',
+						'?'=>array(
+						'type'=>'product',
+						)
+						),
+					),
+					'shop.products.add'=>array(
+						'title'=>'Add',
+						'url'=>array(
+						'plugin'=>'nodes',
+						'controller'=>'nodes',
+						'action'=>'add',
+						'product'
+						)
+					)
+				)
 			),
 			'shop.taxonomys' => array(
 				'title'=>'Taxonomys',
