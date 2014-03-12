@@ -31,6 +31,9 @@ class ShopEventHandler implements CakeEventListener {
 				'title'=>'Customers',
 
 			),
+			'shop.cart' => array(
+				'title'=>'Cart',
+			),
 			'shop.orders' => array(
 				'title'=>'Orders',
 			),
