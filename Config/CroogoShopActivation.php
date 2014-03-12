@@ -17,10 +17,21 @@ class CroogoShopActivation {
 		'product'=>array(
 			'title'=>'Product',
 			'alias'=>'product',
-			'plugin'=>'ShopPlugin'
+			'plugin'=>'CroogoShop'
 		)
 	);
 	$this->setupTypes($types);
+
+	// Setup Vocabs 
+	$vocabs = array(
+		'product_category'=>array(
+			'title'=>'Product Category',
+			'alias'=>'product_category',
+			'plugin'=>'CroogoShop'
+		)
+	);
+	$this->setupVocabs($vocabs);
+
 
 	// Setup Roles
 	$roles = array(
@@ -50,6 +61,30 @@ class CroogoShopActivation {
   public function beforeDeactivation(&$controller){
 	return true;
   }
+
+  public function setupVocabs($vocabs){
+	$this->Vocabulary = ClassRegistry::init('Vocabulary');
+	foreach($vocabs as $vocabAlias => $vocabParams){
+		$vocabulary = $this->Vocabulary->find('first',array(
+		'conditions'=>array(
+		'alias'=>$vocabAlias
+		)
+		));	
+
+		if(!isset($vocabulary['Vocabulary'])){
+		$vocabulary['Vocabulary'] = array();
+		}
+
+		$vocabulary['Vocabulary']['alias'] = $vocabAlias;
+		foreach($vocabParams as $index => $val){
+			$vocabulary['Vocabulary'][$index] = $val;
+		}
+
+		$this->Vocabulary->create();
+		$this->Vocabulary->save($vocabulary);
+	}
+  }
+
 
   public function setupTypes($types){
 	$this->Type = ClassRegistry::init('Type');

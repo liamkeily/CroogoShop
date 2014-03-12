@@ -1,11 +1,11 @@
 <?php
-App::uses('ProductVariation', 'CroogoShop.Model');
+App::uses('Product', 'CroogoShop.Model');
 
 /**
- * ProductVariation Test Case
+ * Product Test Case
  *
  */
-class ProductVariationTest extends CakeTestCase {
+class ProductTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,10 +13,11 @@ class ProductVariationTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'plugin.croogo_shop.product_variation',
 		'plugin.croogo_shop.product',
+		'plugin.croogo_shop.node',
 		'plugin.croogo_shop.cart',
-		'plugin.croogo_shop.order_product'
+		'plugin.croogo_shop.product_option',
+		'plugin.croogo_shop.product_variation'
 	);
 
 /**
@@ -26,7 +27,7 @@ class ProductVariationTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->ProductVariation = ClassRegistry::init('CroogoShop.ProductVariation');
+		$this->Product = ClassRegistry::init('CroogoShop.Product');
 	}
 
 /**
@@ -35,7 +36,7 @@ class ProductVariationTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->ProductVariation);
+		unset($this->Product);
 
 		parent::tearDown();
 	}

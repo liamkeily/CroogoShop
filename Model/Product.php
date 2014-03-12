@@ -1,13 +1,14 @@
 <?php
 App::uses('CroogoShopAppModel', 'CroogoShop.Model');
 /**
- * ProductVariation Model
+ * Product Model
  *
- * @property Product $Product
+ * @property Node $Node
  * @property Cart $Cart
- * @property OrderProduct $OrderProduct
+ * @property ProductOption $ProductOption
+ * @property ProductVariation $ProductVariation
  */
-class ProductVariation extends CroogoShopAppModel {
+class Product extends CroogoShopAppModel {
 
 /**
  * Validation rules
@@ -15,7 +16,7 @@ class ProductVariation extends CroogoShopAppModel {
  * @var array
  */
 	public $validate = array(
-		'product_id' => array(
+		'node_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -35,9 +36,9 @@ class ProductVariation extends CroogoShopAppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Product' => array(
-			'className' => 'Product',
-			'foreignKey' => 'product_id',
+		'Node' => array(
+			'className' => 'Node',
+			'foreignKey' => 'node_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -52,7 +53,7 @@ class ProductVariation extends CroogoShopAppModel {
 	public $hasMany = array(
 		'Cart' => array(
 			'className' => 'Cart',
-			'foreignKey' => 'product_variation_id',
+			'foreignKey' => 'product_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -63,9 +64,22 @@ class ProductVariation extends CroogoShopAppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'OrderProduct' => array(
-			'className' => 'OrderProduct',
-			'foreignKey' => 'product_variation_id',
+		'ProductOption' => array(
+			'className' => 'ProductOption',
+			'foreignKey' => 'product_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'ProductVariation' => array(
+			'className' => 'ProductVariation',
+			'foreignKey' => 'product_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

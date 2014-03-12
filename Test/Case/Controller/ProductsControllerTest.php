@@ -1,11 +1,11 @@
 <?php
-App::uses('CustomersController', 'CroogoShop.Controller');
+App::uses('ProductsController', 'CroogoShop.Controller');
 
 /**
- * CustomersController Test Case
+ * ProductsController Test Case
  *
  */
-class CustomersControllerTest extends ControllerTestCase {
+class ProductsControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -13,9 +13,11 @@ class CustomersControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'plugin.croogo_shop.customer',
+		'plugin.croogo_shop.product',
+		'plugin.croogo_shop.node',
 		'plugin.croogo_shop.cart',
-		'plugin.croogo_shop.order'
+		'plugin.croogo_shop.product_option',
+		'plugin.croogo_shop.product_variation'
 	);
 
 /**

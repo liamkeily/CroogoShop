@@ -8,9 +8,35 @@ class CroogoShopSchema extends CakeSchema {
 	public function after($event = array()) {
 	}
 
+	public $carts = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'session' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'customer_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'product_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'product_variation_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'quantity' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1)
+		),
+		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
+	);
+
 	public $countries = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
 		'country' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1)
+		),
+		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
+	);
+
+	public $customers = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'firstname' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 100, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'lastname' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 100, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'email' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'phone_number' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 20, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'mobile_number' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 20, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
@@ -30,7 +56,7 @@ class CroogoShopSchema extends CakeSchema {
 
 	public $order_products = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
-		'variation_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'product_variation_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'order_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
 		'product_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
 		'unit_price' => array('type' => 'decimal', 'null' => true, 'default' => null, 'length' => '10,2', 'unsigned' => false),
@@ -66,19 +92,6 @@ class CroogoShopSchema extends CakeSchema {
 		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
 	);
 
-	public $product_details = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
-		'node_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
-		'product_code' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 100, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'price' => array('type' => 'decimal', 'null' => true, 'default' => null, 'length' => '10,2', 'unsigned' => false),
-		'variations' => array('type' => 'boolean', 'null' => true, 'default' => null),
-		'stock' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
-	);
-
 	public $product_options = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
 		'product_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
@@ -96,6 +109,19 @@ class CroogoShopSchema extends CakeSchema {
 		'code' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 100, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'description' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 100, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'price' => array('type' => 'decimal', 'null' => true, 'default' => null, 'length' => '10,2', 'unsigned' => false),
+		'stock' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1)
+		),
+		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
+	);
+
+	public $products = array(
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'node_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
+		'product_code' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 100, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'price' => array('type' => 'decimal', 'null' => true, 'default' => null, 'length' => '10,2', 'unsigned' => false),
+		'variations' => array('type' => 'boolean', 'null' => true, 'default' => null),
 		'stock' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
