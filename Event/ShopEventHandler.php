@@ -42,6 +42,45 @@ class ShopEventHandler implements CakeEventListener {
 		'action' => 'settings',
 		),
 		'children'=>array(
+			'shop.settings' => array(
+				'title'=>'Settings',
+				'children'=>array(
+					'shop.settings.setup'=>array(
+						'title'=>'Setup',
+						'url'=>array(
+						'plugin'=>'croogo_shop',
+						'controller'=>'settings',
+						'action'=>'index'
+						)
+					),
+					'shop.settings.countries'=>array(
+						'title'=>'Countries',
+						'url'=>array(
+						'plugin'=>'croogo_shop',
+						'controller'=>'countries',
+						'action'=>'index'
+						)
+					),
+					'shop.settings.taxes'=>array(
+						'title'=>'Taxes',
+						'url'=>array(
+						'plugin'=>'croogo_shop',
+						'controller'=>'taxes',
+						'action'=>'index'
+						)
+					),
+					'shop.cart' => array(
+						'title'=>'View Cart',
+						'url'=>array(
+						'plugin'=>'croogo_shop',
+						'controller'=>'carts',
+						'action'=>'index',
+						)
+					),
+
+				)
+			),
+
 			'shop.products' => array(
 				'title'=>'Products',
 				'url'=>array(
@@ -87,14 +126,6 @@ class ShopEventHandler implements CakeEventListener {
 				'action'=>'index',
 				)
 			),
-			'shop.cart' => array(
-				'title'=>'Cart',
-				'url'=>array(
-				'plugin'=>'croogo_shop',
-				'controller'=>'carts',
-				'action'=>'index',
-				)
-			),
 			'shop.orders' => array(
 				'title'=>'Orders',
 				'url'=>array(
@@ -102,9 +133,6 @@ class ShopEventHandler implements CakeEventListener {
 				'controller'=>'orders',
 				'action'=>'index',
 				)
-			),
-			'shop.settings' => array(
-				'title'=>'Settings',
 			),
 		)
 		));
